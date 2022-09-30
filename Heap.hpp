@@ -22,6 +22,10 @@ class Heap
 	Customer* GetParent(int someIndex);
 	Customer* GetLeft(int someIndex);
 	Customer* GetRight(int someIndex);
+	int GetParentInd(int someIndex);
+	int GetLeftInd(int someIndex);
+	int GetRightInd(int someIndex);
+	void Swap(int indexA, int indexB);
 
 	public:
 	Heap();
