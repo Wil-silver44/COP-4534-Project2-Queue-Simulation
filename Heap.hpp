@@ -10,6 +10,7 @@
  *      for a complete binary tree to be used in a priority queue.
  *
  ***************************************************************/
+#include <iostream>
 #include "Customer.hpp"
 
 class Heap
@@ -20,12 +21,9 @@ class Heap
 	int numElements;
 	void MoveUp(int someIndex);
 	void MoveDown(int someIndex);
-	Customer* GetParent(int someIndex);
-	Customer* GetLeft(int someIndex);
-	Customer* GetRight(int someIndex);
-	int GetParentInd(int someIndex);
-	int GetLeftInd(int someIndex);
-	int GetRightInd(int someIndex);
+	int GetParent(int someIndex);
+	int GetLeft(int someIndex);
+	int GetRight(int someIndex);
 	void Swap(int indexA, int indexB);
 
 	public:

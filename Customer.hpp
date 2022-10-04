@@ -24,7 +24,6 @@ class Customer
 	void SetArrivalT(float someTime);
 	void SetStartOfServT(float someTime);
 	void SetDepartT(float someTime);
-	void SetNextCust(Customer* someNext);
 	float GetArrivalT();
 	float GetStartOfServT();
 	float GetDepartT();

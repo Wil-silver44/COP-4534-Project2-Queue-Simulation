@@ -6,6 +6,8 @@ CXX = g++
 
 CXXFLAGS = -std=c++14 -g -Wall
 
+TESTOBJECTS = heapTest
+
 OBJECTS = Customer.o Heap.o QueueSystem.o ServiceCenter.o AnalyticalModel.o
 
 main: main.cpp $(OBJECTS)
@@ -14,8 +16,8 @@ main: main.cpp $(OBJECTS)
 customerTest: Customer.o
 	$(CXX) $(CXXFLAGS) -o $@
 
-heapTest: Heap.o Customer.o
-	$(CXX) $(CXXFLAGS) -o $@
+heapTest: Tests/heapTest.cpp Heap.o Customer.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
 clean:
 	rm -rf *.dSYM
-		$(RM) *.o *.gc* main
+		$(RM) *.o *.gc* main $(TESTOBJECTS)

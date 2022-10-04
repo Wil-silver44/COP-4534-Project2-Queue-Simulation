@@ -12,75 +12,92 @@ Heap::Heap()
 
 Heap::~Heap()
 {
-
+	for(int i = 0; i < this->MAX_QUEUE_SIZE; ++i)
+	{
+		if(this->queue[i] != nullptr)
+		{
+			delete this->queue[i];
+		}
+		else
+		{
+			continue;
+		}
+	}
 }
 
 void Heap::MoveUp(int someIndex)
 {
 
+	int parentIndex = GetParent(someIndex); 
+	while( parentIndex >= 0)
+	{
+		if (this->queue[someIndex]->GetArrivalT() > this->queue[parentIndex]->GetArrivalT())
+		{
+			Swap(someIndex, parentIndex);
+			someIndex = parentIndex;
+			parentIndex = GetParent(someIndex);
+		}
+		else
+		{
+			break;
+		}
+	}
 }
 
 void Heap::MoveDown(int someIndex)
 {
-	int leftIndex = GetLeftInd(someIndex);
-	int rightIndex = GetRightInd(someIndex);
+	int leftIndex = GetLeft(someIndex);
+	int rightIndex = GetRight(someIndex);
 
-	if(this->numElements < leftIndex)
+	if(leftIndex < this->numElements)
 	{
-		if(this->numElements < rightIndex)
+		//compares chosen customer to its children
+		if(this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT() 
+		   || this->queue[someIndex]->GetArrivalT() < this->queue[rightIndex]->GetArrivalT())
 		{
-			if (this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT()
-					|| this->queue[someIndex]->GetArrivalT() < this->queue[GetRightInd(someIndex)]->GetArrivalT())
+			if (this->queue[rightIndex]->GetArrivalT() > this->queue[leftIndex]->GetArrivalT())
 			{
-				if (this->queue[rightIndex]->GetArrivalT() > this->queue[leftIndex]->GetArrivalT())
-				{
-					Swap(someIndex, rightIndex);
-					MoveDown(rightIndex);
-				}
-				else
-				{
-					Swap(someIndex, leftIndex);
-					MoveDown(leftIndex);
-				}
+				Swap(someIndex, rightIndex);
+				MoveDown(rightIndex);
+			}
+			else
+			{
+				Swap(someIndex, leftIndex);
+				MoveDown(leftIndex);
 			}
 		}
 		else
 		{
 			if (this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT())
-			{ this->Swap(someIndex, leftIndex); }
+			{
+				Swap(someIndex, leftIndex);
+				//only has a left child, cant have grand children.
+			}
 		}
 	}
 	else
 	{
-		break;
+		//has no children, do nothing.
 	}
-
 }
 
 
-Customer* Heap::GetParent(int someIndex)
-{
-	return this->queue[GetParentInd(someIndex)];
-} 
-
-Customer* Heap::GetLeft(int someIndex)
-{
-	return this->queue[GetLeftInd(someIndex)];
+int Heap::GetParent(int someIndex)
+{ 
+	if(someIndex <= 0) //beginning check
+	{
+		return -1;
+	}
+	else
+	{
+		return (someIndex - 1) / 2; 
+	}
 }
 
-Customer* Heap::GetRight(int someIndex)
-{
-	return this->queue[GetRightInd(someIndex)];
-}
-
-
-int Heap::GetParentInd(int someIndex)
-{ return (someIndex - 1) / 2; }
-
-int Heap::GetLeftInd(int someIndex)
+int Heap::GetLeft(int someIndex)
 { return (2 * someIndex) + 1; }
 
-int Heap::GetRightInd(int someIndex)
+int Heap::GetRight(int someIndex)
 { return 2 * (someIndex + 1); }
 
 
@@ -93,10 +110,17 @@ void Heap::Swap(int indexA, int indexB)
 
 void Heap::Insert(Customer* someCust)
 {
-	this->queue[this->numElements] = someCust;
-	MoveUp(this->numElements);
+	if(this->numElements + 1  != this->MAX_QUEUE_SIZE)
+	{
+		this->queue[this->numElements] = someCust;
+		MoveUp(this->numElements);
 
-	++this->numElements;
+		++this->numElements;
+	}
+	else
+	{
+		std::cout << "ERROR: MAX MEMBERS IN QUEUE." << std::endl;
+	}
 }
 
 Customer* Heap::Pop()
@@ -112,4 +136,6 @@ Customer* Heap::Pop()
 	--this->numElements;
 
 	MoveDown(0);
+
+	return poppedVal;
 }
