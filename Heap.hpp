@@ -10,11 +10,12 @@
  *      for a complete binary tree to be used in a priority queue.
  *
  ***************************************************************/
+#include "Customer.hpp"
 
 class Heap
 {
 	private:
-	const int MAX_QUEUE_SIZE = 200; //Max size of queue according to project specs.
+	static const int MAX_QUEUE_SIZE = 200; //Max size of queue according to project specs.
 	Customer* queue[MAX_QUEUE_SIZE];
 	int numElements;
 	void MoveUp(int someIndex);
@@ -31,8 +32,7 @@ class Heap
 	Heap();
 	~Heap();
 	void Insert(Customer* someCust);
-	Customer* peek();
-	Customer* pop();
+	Customer* Pop();
 };
 
 #endif

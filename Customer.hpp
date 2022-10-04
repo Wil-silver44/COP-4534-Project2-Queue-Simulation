@@ -18,7 +18,6 @@ class Customer
 	float arrivalTime;
 	float startOfServiceTime;
 	float departureTime;
-	Customer* nextCustomer;
 
 	public:
 	Customer(float someTime);
@@ -29,7 +28,6 @@ class Customer
 	float GetArrivalT();
 	float GetStartOfServT();
 	float GetDepartT();
-	Customer* GetNextCust();
 };
 
 #endif

@@ -1,7 +1,6 @@
 #include "Heap.hpp"
 
 
-
 Heap::Heap()
 { 
 	this->numElements = 0; 
@@ -18,21 +17,7 @@ Heap::~Heap()
 
 void Heap::MoveUp(int someIndex)
 {
-	int parentIndex = GetParentInd(someIndex);
 
-	while(parentIndex >= 0)
-	{
-		if(this->queue[someIndex].GetArrivalT() > this->queue[parentIndex].GetArrivalT())
-		{
-			Swap(someIndex, parentIndex);
-			someIndex = parentIndex;
-			parentIndex = GetParentInd(someIndex);
-		}
-		else
-		{
-			break;
-		}
-	}
 }
 
 void Heap::MoveDown(int someIndex)
@@ -42,12 +27,12 @@ void Heap::MoveDown(int someIndex)
 
 	if(this->numElements < leftIndex)
 	{
-		if(this->numeElements < rightIndex)
+		if(this->numElements < rightIndex)
 		{
-			if (this->queue[someIndex].GetArrivalT() < this->queue[leftChildIndex].GetArrivalT()
-					|| this->queue[index].GetArrivalT() < this->queue[GetRightInd(someIndex)].GetArrivalT())
+			if (this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT()
+					|| this->queue[someIndex]->GetArrivalT() < this->queue[GetRightInd(someIndex)]->GetArrivalT())
 			{
-				if (this->queue[rightIndex].GetArrivalT() > this->queue[leftIndex].GetArrivalT())
+				if (this->queue[rightIndex]->GetArrivalT() > this->queue[leftIndex]->GetArrivalT())
 				{
 					Swap(someIndex, rightIndex);
 					MoveDown(rightIndex);
@@ -61,7 +46,7 @@ void Heap::MoveDown(int someIndex)
 		}
 		else
 		{
-			if (this->queue[someIndex].GetArrivalT() < this->data[leftIndex].GetArrivalT())
+			if (this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT())
 			{ this->Swap(someIndex, leftIndex); }
 		}
 	}
@@ -75,17 +60,17 @@ void Heap::MoveDown(int someIndex)
 
 Customer* Heap::GetParent(int someIndex)
 {
-	return this->queue[:GetParentInd(someIndex)];
+	return this->queue[GetParentInd(someIndex)];
 } 
 
 Customer* Heap::GetLeft(int someIndex)
 {
-	return this->queue[GetLeftInd(SomeIndex)];
+	return this->queue[GetLeftInd(someIndex)];
 }
 
 Customer* Heap::GetRight(int someIndex)
 {
-	return return this->queue[GetRightInd(someIndex)];
+	return this->queue[GetRightInd(someIndex)];
 }
 
 
@@ -96,7 +81,7 @@ int Heap::GetLeftInd(int someIndex)
 { return (2 * someIndex) + 1; }
 
 int Heap::GetRightInd(int someIndex)
-{ return 2 * (index + 1); }
+{ return 2 * (someIndex + 1); }
 
 
 void Heap::Swap(int indexA, int indexB)
@@ -108,15 +93,23 @@ void Heap::Swap(int indexA, int indexB)
 
 void Heap::Insert(Customer* someCust)
 {
+	this->queue[this->numElements] = someCust;
+	MoveUp(this->numElements);
 
-}
-
-Customer* Heap::Peek()
-{
-
+	++this->numElements;
 }
 
 Customer* Heap::Pop()
 {
+	if (this->numElements <= 0)
+	{
+		throw "No elements in Heap.";
+	}
+	
+	Customer* poppedVal = this->queue[0];
 
+	this->queue[0] = this->queue[this->numElements - 1];
+	--this->numElements;
+
+	MoveDown(0);
 }

@@ -14,7 +14,8 @@ main: main.cpp $(OBJECTS)
 customerTest: Customer.o
 	$(CXX) $(CXXFLAGS) -o $@
 
-
+heapTest: Heap.o Customer.o
+	$(CXX) $(CXXFLAGS) -o $@
 clean:
 	rm -rf *.dSYM
 		$(RM) *.o *.gc* main
