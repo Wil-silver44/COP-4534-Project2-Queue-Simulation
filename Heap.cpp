@@ -1,10 +1,18 @@
 #include "Heap.hpp"
-
+/***************************************************************
+ *      Student Name: Wilver Santos
+ *      File Name: Heap.cpp
+ *      Assignment number: Project 2
+ *
+ *      Other comments regarding the file - Heap.cpp implements  methods and variables
+ *      defined in Heap.hpp.
+ *
+ ***************************************************************/
 
 Heap::Heap()
 { 
 	this->numElements = 0; 
-	for(int i = 0; i < this->MAX_QUEUE_SIZE; ++i)
+	for(int i = 0; i < this->numElements; ++i)
 	{
 		this->queue[i] = nullptr;
 	}
@@ -12,15 +20,18 @@ Heap::Heap()
 
 Heap::~Heap()
 {
-	for(int i = 0; i < this->MAX_QUEUE_SIZE; ++i)
+	if( this->numElements > 0)
 	{
-		if(this->queue[i] != nullptr)
+		for(int i = 0; i < this->MAX_QUEUE_SIZE; ++i)
 		{
-			delete this->queue[i];
-		}
-		else
-		{
-			continue;
+			if(this->queue[i] != nullptr)
+			{
+				delete this->queue[i];
+			}
+			else
+			{
+				continue;
+			}
 		}
 	}
 }
@@ -100,6 +111,8 @@ int Heap::GetLeft(int someIndex)
 int Heap::GetRight(int someIndex)
 { return 2 * (someIndex + 1); }
 
+int Heap::GetNumInQueue()
+{ return this->numElements; }
 
 void Heap::Swap(int indexA, int indexB)
 {

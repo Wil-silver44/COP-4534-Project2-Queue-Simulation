@@ -29,6 +29,7 @@ class Heap
 	public:
 	Heap();
 	~Heap();
+	int GetNumInQueue();
 	void Insert(Customer* someCust);
 	Customer* Pop();
 };
