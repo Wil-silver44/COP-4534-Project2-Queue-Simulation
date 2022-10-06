@@ -30,15 +30,16 @@ float AnalyticalModel::CalcFactorial(int sumNum)
 
 float AnalyticalModel::CalcPo(int m, int mu, int l)
 {
+	float castMu = (mu * 1.0);
 	float sum;
 	float result;
 
 	for(int i = 0; i < m; ++i)
 	{
-		sum += ((1 / CalcFactorial(i) ) * pow( l / (mu * 1.0), i) );
+		sum += ((1 / CalcFactorial(i) ) * pow( l / castMu, i) );
 	}
 
-	result = 1 / ( sum + ( (1 / CalcFactorial(m) ) * pow(l / (mu * 1.0),m) * ( (m * mu) / ( (m * (mu * 1.0)) -l ))));
+	result = 1 / sum + ( ( (1 / CalcFactorial(m)) * pow((l / castMu),m) * ( (m * mu) / ( (m * castMu) -l ))));
 
 	return result;
 }
@@ -46,8 +47,11 @@ float AnalyticalModel::CalcPo(int m, int mu, int l)
 float AnalyticalModel::CalcAvgCustInSys(int m, int mu, int l)
 {
 	float result;
+	float castMu = (mu * 1.0);
+	float b = (l / castMu);
+	float c = ((m * castMu) - l );
 
-	result = (( ( (l * mu) * pow(l / (mu * 1.0),m)) / (CalcFactorial(m - 1) * pow( (m * (mu * 1.0)) - l, 2)) ) * CalcPo(m,mu,l)) + (l/mu);
+	result = (  ( (l * mu) * pow(b,m) ) / (CalcFactorial( (m - 1) ) *  pow(c,2)) ) * CalcPo(m, mu, l) + b;
 
 	return result;
 }
