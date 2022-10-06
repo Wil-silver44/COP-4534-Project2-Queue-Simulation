@@ -20,7 +20,7 @@ Heap::Heap()
 
 Heap::~Heap()
 {
-	if( this->numElements > 0)
+	if(this->numElements > 0)
 	{
 		for(int i = 0; i < this->MAX_QUEUE_SIZE; ++i)
 		{
@@ -42,7 +42,7 @@ void Heap::MoveUp(int someIndex)
 	int parentIndex = GetParent(someIndex); 
 	while( parentIndex >= 0)
 	{
-		if (this->queue[someIndex]->GetArrivalT() > this->queue[parentIndex]->GetArrivalT())
+		if (this->queue[someIndex]->GetArrivalT() < this->queue[parentIndex]->GetArrivalT())
 		{
 			Swap(someIndex, parentIndex);
 			someIndex = parentIndex;
@@ -63,10 +63,10 @@ void Heap::MoveDown(int someIndex)
 	if(leftIndex < this->numElements)
 	{
 		//compares chosen customer to its children
-		if(this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT() 
-		   || this->queue[someIndex]->GetArrivalT() < this->queue[rightIndex]->GetArrivalT())
+		if(this->queue[someIndex]->GetArrivalT() > this->queue[leftIndex]->GetArrivalT() 
+		   || this->queue[someIndex]->GetArrivalT() > this->queue[rightIndex]->GetArrivalT())
 		{
-			if (this->queue[rightIndex]->GetArrivalT() > this->queue[leftIndex]->GetArrivalT())
+			if (this->queue[rightIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT())
 			{
 				Swap(someIndex, rightIndex);
 				MoveDown(rightIndex);
@@ -79,7 +79,7 @@ void Heap::MoveDown(int someIndex)
 		}
 		else
 		{
-			if (this->queue[someIndex]->GetArrivalT() < this->queue[leftIndex]->GetArrivalT())
+			if (this->queue[someIndex]->GetArrivalT() > this->queue[leftIndex]->GetArrivalT())
 			{
 				Swap(someIndex, leftIndex);
 				//only has a left child, cant have grand children.

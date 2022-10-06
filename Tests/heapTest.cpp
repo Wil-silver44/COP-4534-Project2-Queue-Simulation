@@ -35,7 +35,9 @@ int main()
 	cout << testHeap.Pop()->GetArrivalT() << endl;
 
 	cout << "Deleting Customers." << endl << endl;
-
+	delete earlyCust;
+	delete middleCust;
+	delete latestCust;
 	cout << "Operations complete." << endl;
 	return 0;
 }

@@ -35,10 +35,10 @@ float AnalyticalModel::CalcPo(int m, int mu, int l)
 
 	for(int i = 0; i < m; ++i)
 	{
-		sum += ((1 / CalcFactorial(i) ) * pow( l / mu, i) );
+		sum += ((1 / CalcFactorial(i) ) * pow( l / (mu * 1.0), i) );
 	}
 
-	result = 1 / ( sum + ( (1 / CalcFactorial(m) ) * pow(l / mu,m) * ( (m * mu) / ( (m * mu) -l ))));
+	result = 1 / ( sum + ( (1 / CalcFactorial(m) ) * pow(l / (mu * 1.0),m) * ( (m * mu) / ( (m * (mu * 1.0)) -l ))));
 
 	return result;
 }
@@ -47,27 +47,27 @@ float AnalyticalModel::CalcAvgCustInSys(int m, int mu, int l)
 {
 	float result;
 
-	result = (( ( (l * mu) * pow(l / mu,m)) / (CalcFactorial(m - 1) * pow( (m * mu) - l, 2)) ) * CalcPo(m,mu,l)) + (l/mu);
+	result = (( ( (l * mu) * pow(l / (mu * 1.0),m)) / (CalcFactorial(m - 1) * pow( (m * (mu * 1.0)) - l, 2)) ) * CalcPo(m,mu,l)) + (l/mu);
 
 	return result;
 }
 
 float AnalyticalModel::CalcAvgCustTInSys(int m, int mu, int l)
 {
-	return CalcAvgCustInSys(m,mu,l) / l;
+	return CalcAvgCustInSys(m,mu,l) / (l * 1.0);
 }
 
 float AnalyticalModel::CalcAvgCustInQueue(int m, int mu, int l)
 {
-	return CalcAvgCustInSys(m,mu,l) - (l / mu); 
+	return CalcAvgCustInSys(m,mu,l) - (l / (mu * 1.0)); 
 }
 
 float AnalyticalModel::CalcAvgCustTInQueue(int m, int mu, int l)
 {
-	return CalcAvgCustInQueue(m,mu,l) / l;
+	return CalcAvgCustInQueue(m,mu,l) / (l / 1.0);
 }
 
 float AnalyticalModel::CalcUtilFactor(int m, int mu, int l)
 {
-	return l / (m * mu);
+	return l / (m * (mu * 1.0));
 }

@@ -47,6 +47,25 @@ int ServiceCenter::run()
 	}
 
 	cout << "Data gathered, calculating data..." << endl << endl;
+	
+	cout << "Analytical Model:" << endl;
+	cout << "Percent idle time (Po) = "; 
+	cout << this->simulationAnalyzer.CalcPo(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
+	
+	cout << "Average number of people in the system (L) = "; 
+	cout << this->simulationAnalyzer.CalcAvgCustInSys(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
+	
+	cout << "Average time a customer spends in the system (W) = "; 
+	cout << this->simulationAnalyzer.CalcAvgCustTInSys(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
+	
+	cout << "Average numbers of customers in the queue (Lq) = ";
+	cout << this->simulationAnalyzer.CalcAvgCustInQueue(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
+
+	cout << "Average time a customer spends in the queue (Wq) = ";
+	cout << this->simulationAnalyzer.CalcAvgCustTInQueue(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
+
+	cout << "Utilization Factor (ρ) = ";
+	cout << this->simulationAnalyzer.CalcUtilFactor(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
 
 	return 0;
 }
