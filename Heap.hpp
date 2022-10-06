@@ -1,5 +1,7 @@
 #ifndef HEAP_HPP
 #define HEAP_HPP
+#include <iostream>
+#include "Customer.hpp"
 
 /***************************************************************
  *      Student Name: Wilver Santos
@@ -10,8 +12,6 @@
  *      for a complete binary tree to be used in a priority queue.
  *
  ***************************************************************/
-#include <iostream>
-#include "Customer.hpp"
 
 class Heap
 {

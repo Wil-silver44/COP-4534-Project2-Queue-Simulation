@@ -1,5 +1,6 @@
 #ifndef ANALYTICALMODEL_HPP
 #define ANALYTICALMODEL_HPP
+#include <cmath>
 
 /***************************************************************
  *      Student Name: Wilver Santos
@@ -10,8 +11,6 @@
  *      for calculating data regarding service in the simulation.
  *
  ***************************************************************/
-
-#include <cmath>
 
 class AnalyticalModel
 {
