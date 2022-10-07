@@ -2,6 +2,7 @@
 #define SERVICECENTER_HPP
 #include <iostream>
 #include "AnalyticalModel.hpp"
+#include "CustServiceSim.hpp"
 
 /***************************************************************
  *      Student Name: Wilver Santos

@@ -46,7 +46,11 @@ int ServiceCenter::run()
 							       
 	}
 
-	cout << "Data gathered, calculating data..." << endl << endl;
+	cout << "Data gathered, beginning simulation..." << endl;
+
+	//CustServiceSim testSim(this->numArrivals, this->avgArrivalsInTPeriod, this->avgNumServedInTPeriod, this->numServChannel);
+
+	cout << "Simulation complete, printing results." << endl << endl;
 	
 	cout << "Analytical Model:" << endl;
 	cout << "Percent idle time (Po) = "; 
@@ -66,6 +70,9 @@ int ServiceCenter::run()
 
 	cout << "Utilization Factor (ρ) = ";
 	cout << this->simulationAnalyzer.CalcUtilFactor(this->numServChannel,this->avgNumServedInTPeriod,this->avgArrivalsInTPeriod) << endl;
+
+
+	//testSim.PrintResults();
 
 	return 0;
 }

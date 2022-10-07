@@ -13,7 +13,7 @@
 
 float AnalyticalModel::CalcFactorial(int sumNum)
 {
-	int result = -1111;
+	float result = -1111;
 	if(sumNum > -1)
 	{
 		result = 1.0;
@@ -39,7 +39,7 @@ float AnalyticalModel::CalcPo(int m, int mu, int l)
 		sum += ((1 / CalcFactorial(i) ) * pow( l / castMu, i) );
 	}
 
-	result = 1 / sum + ( ( (1 / CalcFactorial(m)) * pow((l / castMu),m) * ( (m * mu) / ( (m * castMu) -l ))));
+	result = 1 / (sum + ( ( (1 / CalcFactorial(m)) * pow((l / castMu),m) * ( (m * castMu) / ( (m * castMu) - l )))));
 
 	return result;
 }

@@ -16,6 +16,9 @@
  *
  ***************************************************************/
 
+using std::cout;
+using std::endl;
+
 class CustServiceSim
 {
 	private:
@@ -29,6 +32,7 @@ class CustServiceSim
 	float idleTime;
 	int customerWaitedCnt;
 	int serverAvailableCnt;
+	int totalEvents;
 	int eventsRemaining;
 	int m;
 	int mu;

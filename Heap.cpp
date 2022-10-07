@@ -124,16 +124,12 @@ void Heap::Swap(int indexA, int indexB)
 
 void Heap::Insert(Customer* someCust)
 {
-	if(this->numElements + 1  != this->MAX_QUEUE_SIZE)
+	if(this->numElements  != this->MAX_QUEUE_SIZE)
 	{
 		this->queue[this->numElements] = someCust;
 		MoveUp(this->numElements);
 
-		++this->numElements;
-	}
-	else
-	{
-		std::cout << "ERROR: MAX MEMBERS IN QUEUE." << std::endl;
+		this->numElements++;
 	}
 }
 
