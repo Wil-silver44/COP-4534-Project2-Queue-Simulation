@@ -14,7 +14,8 @@ Customer::Customer(float someTime)
 {
 	SetArrivalT(someTime);
 	this->startOfServiceTime = -333;
-	this->departureTime = -333;	
+	this->departureTime = -333;
+	this->nextCustomer = nullptr;	
 }
 
 void Customer::SetArrivalT(float someTime)
@@ -26,6 +27,9 @@ void Customer::SetStartOfServT(float someTime)
 void Customer::SetDepartT(float someTime)
 { this->departureTime = someTime; }
 
+void Customer::SetNext(Customer* someCust)
+{ this->nextCustomer = someCust; }
+
 float Customer::GetArrivalT()
 { return this->arrivalTime; }
 
@@ -35,4 +39,5 @@ float Customer::GetStartOfServT()
 float Customer::GetDepartT()
 { return this->departureTime; }
 
-
+Customer* Customer::GetNext()
+{ return this->nextCustomer; }

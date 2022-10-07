@@ -18,15 +18,18 @@ class Customer
 	float arrivalTime;
 	float startOfServiceTime;
 	float departureTime;
+	Customer* nextCustomer;
 
 	public:
 	Customer(float someTime);
 	void SetArrivalT(float someTime);
 	void SetStartOfServT(float someTime);
 	void SetDepartT(float someTime);
+	void SetNext(Customer* someCust);
 	float GetArrivalT();
 	float GetStartOfServT();
 	float GetDepartT();
+	Customer* GetNext();
 };
 
 #endif

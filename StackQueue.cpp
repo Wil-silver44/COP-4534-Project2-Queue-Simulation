@@ -24,7 +24,7 @@ StackQueue::~StackQueue()
 			Customer* helper = this->header->GetNext();
 			if(helper->GetNext() != nullptr)
 			{
-				helper = (helper->GetNext();
+				helper = helper->GetNext();
 			}
 			else
 			{
@@ -38,20 +38,25 @@ StackQueue::~StackQueue()
 
 void StackQueue::Insert(Customer* someCust)
 {
-	if(!IsEmpty)
+	if(!IsEmpty())
 	{
-		customer* temp = this->header;
+		Customer* temp = this->header;
 		this->header = someCust;
-		this->header->SetNext() = temp;
+		this->header->SetNext(temp);
 	}
 }
 
 Customer* StackQueue::PopHeader()
 {
-	customer* temp = this->header;
-	this->header = temp->GetNext();
+	if(this->header != nullptr)
+	{
+		Customer* temp = this->header;
+		this->header = temp->GetNext();
 
-	return temp;
+		return temp;
+	}
+
+	return nullptr;
 }
 
 bool StackQueue::IsEmpty()

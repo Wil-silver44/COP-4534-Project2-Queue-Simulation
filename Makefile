@@ -8,7 +8,7 @@ CXXFLAGS = -std=c++14 -g -Wall
 
 TESTOBJECTS = heapTest
 
-OBJECTS = Customer.o Heap.o ServiceCenter.o AnalyticalModel.o
+OBJECTS = Customer.o Heap.o StackQueue.o CustServiceSim.o ServiceCenter.o AnalyticalModel.o
 
 main: main.cpp $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
